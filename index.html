@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Find your next internship with InternHub. Search roles, filter by domain and work mode, and apply.">
+  <title>InternHub — Find your next opportunity</title>
+  <link rel="stylesheet" href="internship2.css">
+  <script src="web.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to internship listings</a>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="#" aria-label="InternHub home"><span class="brand-mark" aria-hidden="true">I</span> Intern<span>Hub</span></a>
+      <nav aria-label="Main navigation"><a href="#opportunities">Opportunities</a><a href="#about">About</a></nav>
+      <a class="nav-cta" href="#opportunities">Explore roles <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="hero-content">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> YOUR NEXT CHAPTER STARTS HERE</p>
+        <h1>Start small.<br><span>Build something</span> big.</h1>
+        <p class="hero-copy">Find internships that turn what you’re learning into real-world experience. Your next opportunity is closer than you think.</p>
+        <a class="hero-link" href="#opportunities">Explore opportunities <span aria-hidden="true">↓</span></a>
+        <div class="hero-proof"><div class="avatar-stack" aria-hidden="true"><span>J</span><span>A</span><span>M</span><span>+</span></div><p><strong>Made for curious minds</strong><br><span>Learn, contribute, grow.</span></p></div>
+      </div>
+      <div class="hero-art" aria-label="Illustration of a career growth dashboard">
+        <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+        <div class="floating-note note-top"><span class="note-icon">✦</span><span><strong>New beginnings</strong><small>One role can change everything.</small></span></div>
+        <div class="dashboard-card">
+          <div class="dash-top"><span class="dash-dot"></span><span class="dash-dot"></span><span class="dash-dot"></span><span class="dash-label">YOUR NEXT MOVE</span></div>
+          <div class="dash-illustration"><div class="sun"></div><div class="hill hill-back"></div><div class="hill hill-front"></div><div class="path"></div><div class="plant plant-a"></div><div class="plant plant-b"></div></div>
+          <div class="dash-bottom"><div><small>Career momentum</small><strong>Growing every day ↗</strong></div><div class="growth-bars"><i></i><i></i><i></i><i></i><i></i></div></div>
+        </div>
+        <div class="floating-note note-bottom"><span class="check-bubble">✓</span><span><strong>Progress looks good</strong><small>Keep showing up.</small></span></div>
+      </div>
+    </section>
+
+    <section class="stats-strip" aria-label="Internship board overview">
+      <div><strong id="stat-roles">05</strong><span>Open opportunities</span></div>
+      <div><strong>04</strong><span>Career domains</span></div>
+      <div><strong>03</strong><span>Ways to work</span></div>
+      <div><strong>100%</strong><span>Room to grow</span></div>
+    </section>
+
+    <section class="opportunities section-wrap" id="opportunities">
+      <div class="section-heading">
+        <div><p class="eyebrow">FIND YOUR FIT</p><h2>Opportunities worth<br><span>showing up for.</span></h2></div>
+        <p class="section-intro">Explore roles designed to help you learn by doing. Filter the list and find the one that feels right.</p>
+      </div>
+
+      <form class="filter-panel" id="filter-form" role="search" aria-label="Search and filter internships">
+        <div class="search-field">
+          <label for="search-input">Search opportunities</label>
+          <div class="input-with-icon"><span aria-hidden="true">⌕</span><input id="search-input" name="q" type="search" placeholder="Role, skill, or location..." autocomplete="off"></div>
+        </div>
+        <div class="filter-field"><label for="domain-filter">Domain</label>
+          <select id="domain-filter" name="domain"><option value="all">All domains</option><option>Full Stack Development</option><option>UI/UX</option><option>Data Analytics</option><option>Cyber Security</option></select>
+        </div>
+        <div class="filter-field"><label for="mode-filter">Work mode</label>
+          <select id="mode-filter" name="mode"><option value="all">Any work mode</option><option>Remote</option><option>Hybrid</option><option>On-site</option></select>
+        </div>
+        <button class="reset-btn" id="reset-filters" type="button">Reset</button>
+      </form>
+
+      <div class="results-row"><p id="results-count" aria-live="polite" aria-atomic="true">Loading opportunities…</p><span class="results-note"><span class="live-dot"></span> Sample listings</span></div>
+      <div id="loading-state" class="state-panel"><span class="loader" aria-hidden="true"></span><p>Finding opportunities for you…</p></div>
+      <div id="error-state" class="state-panel error-state" hidden><span class="state-symbol" aria-hidden="true">!</span><h3>We couldn’t load the listings</h3><p>Check your connection and try again.</p><button id="retry-button" class="button button-dark" type="button">Try again</button></div>
+      <div id="empty-state" class="state-panel" hidden><span class="state-symbol" aria-hidden="true">⌕</span><h3>No matching opportunities</h3><p>Try another keyword or reset your filters to see all roles.</p><button id="empty-reset" class="button button-dark" type="button">Clear filters</button></div>
+      <div class="internship-grid" id="internship-list" aria-label="Internship results" aria-busy="true"></div>
+      <p class="data-note">These are fictional sample listings created for this project.</p>
+    </section>
+
+    <section class="quote-section" id="about"><div class="quote-mark" aria-hidden="true">“</div><blockquote>You don’t need to have it all figured out. You just need a place to start.</blockquote><p>InternHub · Opportunities for your next step</p></section>
+  </main>
+
+  <footer class="site-footer"><a class="brand" href="#"><span class="brand-mark" aria-hidden="true">I</span> Intern<span>Hub</span></a><p>Small steps. Real experience. Better tomorrows.</p><span>© 2026 InternHub · Student project</span></footer>
+
+  <dialog id="details-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-head"><span class="dialog-kicker">OPPORTUNITY DETAILS</span><button type="button" class="icon-button" id="close-details" aria-label="Close details">×</button></div>
+    <div id="dialog-content"></div>
+  </dialog>
+
+  <dialog id="apply-dialog" aria-labelledby="apply-title">
+    <div class="dialog-head"><span class="dialog-kicker">TAKE THE NEXT STEP</span><button type="button" class="icon-button" id="close-apply" aria-label="Close application form">×</button></div>
+    <div class="apply-intro"><p class="eyebrow">APPLICATION</p><h2 id="apply-title">Make your move.</h2><p id="apply-role" class="muted"></p></div>
+    <form id="application-form" class="application-form" novalidate>
+      <input type="hidden" id="apply-internship-id" name="internshipId">
+      <div class="form-field"><label for="applicant-name">Full name <span aria-hidden="true">*</span></label><input id="applicant-name" name="name" autocomplete="name" required minlength="2" maxlength="80"><small class="field-error" id="name-error"></small></div>
+      <div class="form-field"><label for="applicant-email">Email address <span aria-hidden="true">*</span></label><input id="applicant-email" name="email" type="email" autocomplete="email" required maxlength="254"><small class="field-error" id="email-error"></small></div>
+      <div class="form-field"><label for="portfolio-url">Portfolio or LinkedIn URL <span class="optional">(optional)</span></label><input id="portfolio-url" name="portfolio" type="url" placeholder="https://example.com" autocomplete="url"><small class="field-error" id="portfolio-error"></small></div>
+      <p class="form-note">Demo only: your application is saved in this browser, not sent to a company.</p>
+      <button class="button button-dark submit-button" type="submit">Submit demo application <span aria-hidden="true">↗</span></button>
+      <p id="application-feedback" class="form-feedback" role="status" aria-live="polite"></p>
+    </form>
+  </dialog>
+</body>
+</html>

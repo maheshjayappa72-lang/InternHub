@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Find your next internship with InternHub. Search roles, filter by domain and work mode, and apply.">
+  <title>InternHub — Find your next opportunity</title>
+
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+:root{--ink:#192a24;--muted:#66746d;--green:#d8f36a;--green-dark:#a5c83d;--paper:#f7f8f3;--white:#fff;--line:#e2e7dd;--orange:#f4a46d;--shadow:0 18px 45px rgba(28,48,37,.09);--radius:22px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:'DM Sans',Arial,sans-serif;line-height:1.55}
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit}
+button,a,input,select{outline-offset:4px}
+:focus-visible{outline:3px solid #597c22!important;outline-offset:3px}
+.skip-link{position:absolute;left:12px;top:-60px;background:var(--ink);color:white;padding:12px 16px;border-radius:10px;z-index:100}
+.skip-link:focus{top:12px}
+.site-header{height:78px;display:flex;align-items:center;border-bottom:1px solid rgba(25,42,36,.07);background:rgba(247,248,243,.92);position:sticky;top:0;z-index:20;backdrop-filter:blur(14px)}
+.nav-wrap{width:min(1160px,calc(100% - 48px));margin:auto;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:inline-flex;align-items:center;gap:8px;font:800 20px Manrope,sans-serif;letter-spacing:-.8px;white-space:nowrap}
+.brand>span:last-child{margin-left:-8px;color:#728c33}
+.brand-mark{display:grid;place-items:center;width:31px;height:31px;background:var(--green);border-radius:10px;font-size:17px;color:var(--ink)}
+nav{display:flex;gap:32px;color:#526158;font-size:13px;font-weight:600}
+nav a:hover,.hero-link:hover{color:#698a1f}
+.nav-cta{font-size:13px;font-weight:700;background:var(--ink);color:white;padding:11px 16px;border-radius:999px}
+.nav-cta span{color:var(--green);padding-left:8px}
+.hero{max-width:1160px;width:calc(100% - 48px);min-height:500px;margin:0 auto;display:grid;grid-template-columns:1.02fr .98fr;align-items:center;gap:35px;padding:62px 0 54px}
+.eyebrow{font-size:10px;font-weight:800;letter-spacing:1.7px;color:#718b31;margin:0 0 15px}
+.eyebrow-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#a7c840;margin-right:8px;box-shadow:0 0 0 4px #e9f3c9}
+h1,h2,h3,p{margin-top:0}
+h1,h2{font-family:Manrope,Arial,sans-serif;letter-spacing:-2.5px;line-height:1.08}
+h1{font-size:clamp(42px,5.2vw,66px);max-width:580px;margin-bottom:22px}
+h1 span,h2 span{color:#79952d}
+.hero-copy{max-width:430px;color:var(--muted);font-size:15px;line-height:1.8;margin-bottom:25px}
+.hero-link{font-weight:700;font-size:13px;border-bottom:1px solid #9cae87;padding-bottom:7px;display:inline-flex;gap:18px}
+.hero-link span{color:#718b31}
+.hero-proof{display:flex;align-items:center;gap:14px;margin-top:36px}
+.avatar-stack{display:flex;padding-left:3px}
+.avatar-stack span{width:30px;height:30px;margin-left:-4px;border:2px solid var(--paper);border-radius:50%;display:grid;place-items:center;font-size:10px;font-weight:800;background:#d9e9c7}
+.avatar-stack span:nth-child(2){background:#f6c8a6}.avatar-stack span:nth-child(3){background:#d7d7f5}.avatar-stack span:nth-child(4){background:var(--ink);color:white}
+.hero-proof p{font-size:11px;line-height:1.5;margin:0}.hero-proof strong{font-size:12px}.hero-proof p span{color:var(--muted)}
+.hero-art{height:370px;position:relative;display:grid;place-items:center}
+.art-orbit{position:absolute;border:1px solid #dce5d1;border-radius:50%;transform:rotate(-20deg)}
+.orbit-one{width:370px;height:285px}.orbit-two{width:430px;height:330px;transform:rotate(38deg);border-style:dashed}
+.dashboard-card{position:relative;z-index:2;width:min(340px,82%);background:white;border:1px solid #e8ece4;border-radius:22px;padding:17px;box-shadow:0 28px 65px rgba(39,63,43,.13);transform:rotate(-3deg)}
+.dash-top{display:flex;align-items:center;gap:5px}.dash-dot{width:6px;height:6px;background:#dfe5d9;border-radius:50%}.dash-label{margin-left:auto;font-size:8px;font-weight:800;letter-spacing:1.3px;color:#869187}
+.dash-illustration{height:190px;margin-top:14px;border-radius:14px;overflow:hidden;position:relative;background:#edf4d9}
+.sun{position:absolute;width:58px;height:58px;right:44px;top:27px;border-radius:50%;background:#f6c780}
+.hill{position:absolute;width:290px;height:180px;border-radius:50% 50% 0 0;bottom:-92px;transform:rotate(-9deg)}
+.hill-back{background:#b9d6a2;left:-35px}.hill-front{background:#7d9e64;right:-60px;bottom:-115px;transform:rotate(15deg)}
+.path{position:absolute;left:128px;bottom:-10px;width:52px;height:130px;border-radius:50%;border:12px solid #f6f1d9;border-bottom:0;border-left-color:transparent;transform:rotate(15deg)}
+.plant{position:absolute;bottom:26px;width:5px;height:42px;background:#365d41;border-radius:4px;z-index:2}.plant:before,.plant:after{content:"";position:absolute;width:19px;height:9px;background:#4d7851;border-radius:100% 0 100% 0}.plant:before{left:-14px;top:12px;transform:rotate(15deg)}.plant:after{left:2px;top:22px;transform:rotate(80deg)}.plant-a{left:48px}.plant-b{right:45px;height:30px}
+.dash-bottom{display:flex;align-items:center;justify-content:space-between;padding:15px 3px 3px}.dash-bottom small{display:block;font-size:9px;color:#7c877d}.dash-bottom strong{font-size:12px;display:block;margin-top:3px}
+.growth-bars{display:flex;align-items:end;gap:4px;height:28px}.growth-bars i{display:block;width:6px;border-radius:4px;background:#d8f36a}.growth-bars i:nth-child(1){height:9px}.growth-bars i:nth-child(2){height:14px}.growth-bars i:nth-child(3){height:12px}.growth-bars i:nth-child(4){height:21px}.growth-bars i:nth-child(5){height:28px;background:#8ba83b}
+.floating-note{position:absolute;z-index:3;background:white;border:1px solid #edf0e9;box-shadow:var(--shadow);border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:10px}.floating-note strong,.floating-note small{display:block}.floating-note strong{font-size:10px}.floating-note small{font-size:9px;color:#78837b;margin-top:3px}.note-top{top:31px;right:0}.note-bottom{bottom:24px;left:0}.note-icon,.check-bubble{width:30px;height:30px;border-radius:10px;background:#eff7d6;display:grid;place-items:center;color:#6c8c23;font-size:16px}.check-bubble{background:#e5f0e5;color:#3b8050;border-radius:50%;font-weight:800}
+.stats-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:1160px;width:calc(100% - 48px);margin:0 auto 80px;padding:25px 30px;background:#edf1e6;border:1px solid #e4e9dc;border-radius:18px}
+.stats-strip>div{display:flex;align-items:center;gap:12px;border-right:1px solid #d8dfd0;padding-left:10px}.stats-strip>div:last-child{border:0}.stats-strip strong{font:800 25px Manrope,sans-serif;letter-spacing:-1px}.stats-strip span{font-size:11px;line-height:1.4;color:#68756b;max-width:85px}
+.section-wrap{max-width:1160px;width:calc(100% - 48px);margin:0 auto}
+.section-heading{display:flex;align-items:end;justify-content:space-between;gap:35px;margin-bottom:32px}
+h2{font-size:clamp(32px,4vw,45px);margin-bottom:0}
+.section-intro{max-width:340px;font-size:13px;color:var(--muted);line-height:1.8;margin:0 0 3px}
+.filter-panel{display:grid;grid-template-columns:minmax(210px,1.6fr) minmax(155px,1fr) minmax(145px,.9fr) auto;gap:14px;align-items:end;background:white;padding:18px;border:1px solid var(--line);border-radius:18px;box-shadow:0 10px 30px rgba(28,48,37,.035)}
+.search-field,.filter-field{min-width:0}.filter-panel label,.form-field label{display:block;font-size:11px;font-weight:700;margin-bottom:7px;color:#47574c}
+.input-with-icon{display:flex;align-items:center;gap:8px;border:1px solid #e1e7dc;border-radius:10px;padding:0 11px;height:44px}.input-with-icon>span{font-size:22px;color:#879a6c;line-height:1}
+.input-with-icon input{width:100%;border:0;outline:none!important;min-width:0;background:transparent;font-size:12px;color:var(--ink)}
+.input-with-icon:focus-within{border-color:#7f9e37;box-shadow:0 0 0 3px #edf5d9}
+select,.form-field input{height:44px;width:100%;border:1px solid #e1e7dc;border-radius:10px;padding:0 11px;background:white;color:#34443a;font-size:12px;min-width:0}
+.reset-btn{height:44px;border:0;background:transparent;color:#5f762b;font-size:12px;font-weight:700;cursor:pointer;padding:0 8px}.reset-btn:hover{text-decoration:underline}
+.results-row{display:flex;justify-content:space-between;align-items:center;margin:26px 2px 16px}.results-row p{font-size:12px;font-weight:700;margin:0}.results-note{font-size:10px;color:#748075}.live-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#9cc13b;margin-right:5px}
+.internship-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.internship-card{background:white;border:1px solid var(--line);border-radius:18px;padding:21px;display:flex;flex-direction:column;min-height:300px;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.internship-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#d0dcbf}
+.card-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:20px}.company-mark{width:43px;height:43px;border-radius:13px;display:grid;place-items:center;font:800 17px Manrope,sans-serif;background:#edf4dc;color:#617d2d}.company-mark.purple{background:#eeebfb;color:#7364a8}.company-mark.orange{background:#fff0e5;color:#ba7540}.company-mark.blue{background:#e6f1f8;color:#477a9a}.company-mark.pink{background:#f9e9ed;color:#a75d71}
+.role-id{font-size:9px;color:#8a958c;font-weight:700;letter-spacing:.4px}.domain-pill{display:inline-flex;align-self:flex-start;padding:5px 9px;border-radius:999px;background:#f0f4e9;color:#627744;font-size:9px;font-weight:700;margin-bottom:11px}
+.internship-card h3{font:800 18px/1.35 Manrope,sans-serif;letter-spacing:-.5px;margin:0 0 12px}.meta-list{display:flex;flex-wrap:wrap;gap:7px 13px;color:#728077;font-size:10px;margin-bottom:15px}.meta-list span{display:inline-flex;align-items:center;gap:5px}.meta-icon{color:#839a55;font-size:13px}
+.skill-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:19px}.skill-tag{font-size:9px;color:#536258;background:#f7f8f4;border:1px solid #e9ede5;padding:5px 7px;border-radius:6px}
+.card-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;padding-top:14px;border-top:1px solid #edf0e9}.opening-count{font-size:10px;color:#728077}.opening-count strong{color:#34443a}.card-actions{display:flex;gap:7px}.button{border:0;border-radius:999px;padding:11px 15px;font-size:11px;font-weight:700;cursor:pointer;display:inline-flex;justify-content:center;align-items:center;gap:10px;transition:background .15s ease,transform .15s ease}.button:hover{transform:translateY(-1px)}.button-dark{background:var(--ink);color:white}.button-dark:hover{background:#2e4b3d}.button-light{background:#f0f4e9;color:#4d6329}.button-light:hover{background:#e3edce}.button-small{padding:9px 12px;font-size:10px}
+.state-panel{padding:46px 18px;text-align:center;border:1px dashed #d6dfcd;background:#fbfcf8;border-radius:18px;color:var(--muted)}.state-panel h3{font:800 20px Manrope,sans-serif;color:var(--ink);margin:10px 0}.state-panel p{font-size:12px;margin-bottom:16px}.state-symbol{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:50%;background:#edf4dc;color:#6d8834;font-size:24px;font-weight:700}.error-state .state-symbol{background:#fff0e9;color:#b55d42}.loader{display:inline-block;width:26px;height:26px;border:3px solid #e3e9d9;border-top-color:#87a83b;border-radius:50%;animation:spin .8s linear infinite}.state-panel[hidden]{display:none!important}.data-note{font-size:10px;color:#89948b;margin-top:19px}.error-state .button{margin-top:2px}
+.quote-section{margin-top:100px;background:#eaf0df;text-align:center;padding:65px 24px 58px}.quote-mark{font:800 68px Georgia,serif;color:#a4bd62;height:42px}.quote-section blockquote{font:700 clamp(23px,3vw,34px)/1.35 Manrope,sans-serif;letter-spacing:-1px;max-width:670px;margin:15px auto}.quote-section>p{font-size:11px;color:#7a8876;margin:18px 0 0}
+.site-footer{max-width:1160px;width:calc(100% - 48px);margin:auto;min-height:100px;display:flex;align-items:center;justify-content:space-between;gap:20px}.site-footer p,.site-footer>span{font-size:10px;color:#7b877e;margin:0}.site-footer .brand{font-size:17px}.site-footer .brand-mark{width:27px;height:27px;font-size:14px}
+dialog{border:1px solid #e2e7dd;border-radius:22px;padding:24px;width:min(540px,calc(100% - 28px));max-height:min(88vh,800px);overflow:auto;color:var(--ink);box-shadow:0 30px 100px #16281f35}dialog::backdrop{background:#14251dcc;backdrop-filter:blur(4px)}.dialog-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}.dialog-kicker{font-size:9px;letter-spacing:1.5px;font-weight:800;color:#718b31}.icon-button{border:0;width:35px;height:35px;border-radius:50%;background:#f0f4e9;color:var(--ink);font-size:23px;cursor:pointer;line-height:1}.dialog-role-id{font-size:10px;color:#78847b;font-weight:700}.dialog-title{font:800 27px/1.2 Manrope,sans-serif;letter-spacing:-1px;margin:8px 0 12px}.dialog-description{color:#65736a;font-size:13px;line-height:1.8}.detail-block{padding:17px 0;border-top:1px solid #e9ede5}.detail-block h3{font:800 12px Manrope,sans-serif;margin-bottom:9px}.detail-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.detail-facts div{padding:12px;background:#f5f7f0;border-radius:10px}.detail-facts small{display:block;color:#7c887d;font-size:9px;margin-bottom:4px}.detail-facts strong{font-size:11px}.dialog-actions{display:flex;gap:10px;margin-top:20px}.dialog-actions .button{flex:1}
+.apply-intro h2{font-size:32px;margin-bottom:8px}.apply-intro .muted{color:#6f7c72;font-size:12px}.application-form{display:grid;gap:15px}.form-field input{font-size:13px}.form-field input:focus{border-color:#7f9e37;box-shadow:0 0 0 3px #edf5d9;outline:none}.optional{font-weight:400;color:#89948b}.field-error{display:block;color:#b64c36;font-size:10px;min-height:0;margin-top:4px}.field-error:empty{display:none}.form-note{font-size:10px;line-height:1.6;color:#7b877e;background:#f5f7f0;border-radius:10px;padding:11px;margin:0}.submit-button{width:100%;padding:13px}.form-feedback{font-size:12px;margin:0;color:#35734a}.form-feedback.error{color:#b64c36}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:900px){.hero{min-height:440px;gap:12px}.hero-art{transform:scale(.9)}.filter-panel{grid-template-columns:1.5fr 1fr 1fr}.reset-btn{grid-column:3;justify-self:end;height:28px}.internship-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.stats-strip{margin-bottom:65px}.stats-strip>div{gap:8px;padding-left:0}.stats-strip strong{font-size:22px}}
+@media(max-width:650px){.site-header{height:66px}.nav-wrap,.hero,.section-wrap,.stats-strip,.site-footer{width:calc(100% - 36px)}nav{display:none}.nav-cta{font-size:11px;padding:10px 12px}.hero{grid-template-columns:1fr;padding:50px 0 20px;gap:0}.hero-content{position:relative;z-index:4}.hero h1{font-size:clamp(43px,12vw,58px);letter-spacing:-2px}.hero-copy{font-size:13px;max-width:390px}.hero-proof{margin-top:24px}.hero-art{height:290px;margin-top:0;transform:scale(.86);transform-origin:top center;margin-bottom:-30px}.dashboard-card{width:310px}.dash-illustration{height:150px}.orbit-one{width:310px;height:240px}.orbit-two{width:350px;height:280px}.note-top{right:-1px;top:20px}.note-bottom{left:-1px;bottom:8px}.stats-strip{grid-template-columns:repeat(2,1fr);gap:0;margin-bottom:58px;padding:16px 18px}.stats-strip>div{padding:13px 0;border-right:0;border-bottom:1px solid #d8dfd0}.stats-strip>div:nth-child(odd){border-right:1px solid #d8dfd0;padding-right:8px}.stats-strip>div:nth-child(even){padding-left:14px}.stats-strip>div:nth-child(n+3){border-bottom:0}.stats-strip strong{font-size:23px}.section-heading{display:block;margin-bottom:24px}.section-intro{margin-top:17px;font-size:12px}.filter-panel{grid-template-columns:1fr 1fr;padding:14px;gap:13px}.search-field{grid-column:1/-1}.filter-field select{font-size:11px;padding:0 7px}.reset-btn{grid-column:2;justify-self:end;height:28px}.results-row{margin-top:21px}.internship-grid{grid-template-columns:1fr;gap:13px}.internship-card{min-height:0;padding:19px}.quote-section{margin-top:65px;padding:50px 24px}.site-footer{padding:24px 0;display:grid;grid-template-columns:1fr auto;gap:10px}.site-footer p{grid-column:1/-1;grid-row:2}.site-footer>span{grid-column:1/-1;grid-row:3}.detail-facts{grid-template-columns:1fr 1fr}.dialog-actions{flex-direction:column}.dialog-actions .button{width:100%}}
+@media(max-width:380px){.nav-wrap,.hero,.section-wrap,.stats-strip,.site-footer{width:calc(100% - 28px)}.brand{font-size:18px}.nav-cta{padding:9px 10px}.hero-art{margin-left:-8px;margin-right:-8px;transform:scale(.78);margin-bottom:-54px}.filter-panel{padding:12px;gap:10px}.internship-card{padding:16px}.card-footer{align-items:flex-start;flex-direction:column}.card-actions{width:100%}.card-actions .button{flex:1}.stats-strip span{font-size:10px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to internship listings</a>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="#" aria-label="InternHub home"><span class="brand-mark" aria-hidden="true">I</span> Intern<span>Hub</span></a>
+      <nav aria-label="Main navigation"><a href="#opportunities">Opportunities</a><a href="#about">About</a></nav>
+      <a class="nav-cta" href="#opportunities">Explore roles <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="hero-content">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> YOUR NEXT CHAPTER STARTS HERE</p>
+        <h1>Start small.<br><span>Build something</span> big.</h1>
+        <p class="hero-copy">Find internships that turn what you’re learning into real-world experience. Your next opportunity is closer than you think.</p>
+        <a class="hero-link" href="#opportunities">Explore opportunities <span aria-hidden="true">↓</span></a>
+        <div class="hero-proof"><div class="avatar-stack" aria-hidden="true"><span>J</span><span>A</span><span>M</span><span>+</span></div><p><strong>Made for curious minds</strong><br><span>Learn, contribute, grow.</span></p></div>
+      </div>
+      <div class="hero-art" aria-label="Illustration of a career growth dashboard">
+        <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+        <div class="floating-note note-top"><span class="note-icon">✦</span><span><strong>New beginnings</strong><small>One role can change everything.</small></span></div>
+        <div class="dashboard-card">
+          <div class="dash-top"><span class="dash-dot"></span><span class="dash-dot"></span><span class="dash-dot"></span><span class="dash-label">YOUR NEXT MOVE</span></div>
+          <div class="dash-illustration"><div class="sun"></div><div class="hill hill-back"></div><div class="hill hill-front"></div><div class="path"></div><div class="plant plant-a"></div><div class="plant plant-b"></div></div>
+          <div class="dash-bottom"><div><small>Career momentum</small><strong>Growing every day ↗</strong></div><div class="growth-bars"><i></i><i></i><i></i><i></i><i></i></div></div>
+        </div>
+        <div class="floating-note note-bottom"><span class="check-bubble">✓</span><span><strong>Progress looks good</strong><small>Keep showing up.</small></span></div>
+      </div>
+    </section>
+
+    <section class="stats-strip" aria-label="Internship board overview">
+      <div><strong id="stat-roles">05</strong><span>Open opportunities</span></div>
+      <div><strong>04</strong><span>Career domains</span></div>
+      <div><strong>03</strong><span>Ways to work</span></div>
+      <div><strong>100%</strong><span>Room to grow</span></div>
+    </section>
+
+    <section class="opportunities section-wrap" id="opportunities">
+      <div class="section-heading">
+        <div><p class="eyebrow">FIND YOUR FIT</p><h2>Opportunities worth<br><span>showing up for.</span></h2></div>
+        <p class="section-intro">Explore roles designed to help you learn by doing. Filter the list and find the one that feels right.</p>
+      </div>
+
+      <form class="filter-panel" id="filter-form" role="search" aria-label="Search and filter internships">
+        <div class="search-field">
+          <label for="search-input">Search opportunities</label>
+          <div class="input-with-icon"><span aria-hidden="true">⌕</span><input id="search-input" name="q" type="search" placeholder="Role, skill, or location..." autocomplete="off"></div>
+        </div>
+        <div class="filter-field"><label for="domain-filter">Domain</label>
+          <select id="domain-filter" name="domain"><option value="all">All domains</option><option>Full Stack Development</option><option>UI/UX</option><option>Data Analytics</option><option>Cyber Security</option></select>
+        </div>
+        <div class="filter-field"><label for="mode-filter">Work mode</label>
+          <select id="mode-filter" name="mode"><option value="all">Any work mode</option><option>Remote</option><option>Hybrid</option><option>On-site</option></select>
+        </div>
+        <button class="reset-btn" id="reset-filters" type="button">Reset</button>
+      </form>
+
+      <div class="results-row"><p id="results-count" aria-live="polite" aria-atomic="true">Loading opportunities…</p><span class="results-note"><span class="live-dot"></span> Sample listings</span></div>
+      <div id="loading-state" class="state-panel"><span class="loader" aria-hidden="true"></span><p>Finding opportunities for you…</p></div>
+      <div id="error-state" class="state-panel error-state" hidden><span class="state-symbol" aria-hidden="true">!</span><h3>We couldn’t load the listings</h3><p>Check your connection and try again.</p><button id="retry-button" class="button button-dark" type="button">Try again</button></div>
+      <div id="empty-state" class="state-panel" hidden><span class="state-symbol" aria-hidden="true">⌕</span><h3>No matching opportunities</h3><p>Try another keyword or reset your filters to see all roles.</p><button id="empty-reset" class="button button-dark" type="button">Clear filters</button></div>
+      <div class="internship-grid" id="internship-list" aria-label="Internship results" aria-busy="true"></div>
+      <p class="data-note">These are fictional sample listings created for this project.</p>
+    </section>
+
+    <section class="quote-section" id="about"><div class="quote-mark" aria-hidden="true">“</div><blockquote>You don’t need to have it all figured out. You just need a place to start.</blockquote><p>InternHub · Opportunities for your next step</p></section>
+  </main>
+
+  <footer class="site-footer"><a class="brand" href="#"><span class="brand-mark" aria-hidden="true">I</span> Intern<span>Hub</span></a><p>Small steps. Real experience. Better tomorrows.</p><span>© 2026 InternHub · Student project</span></footer>
+
+  <dialog id="details-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-head"><span class="dialog-kicker">OPPORTUNITY DETAILS</span><button type="button" class="icon-button" id="close-details" aria-label="Close details">×</button></div>
+    <div id="dialog-content"></div>
+  </dialog>
+
+  <dialog id="apply-dialog" aria-labelledby="apply-title">
+    <div class="dialog-head"><span class="dialog-kicker">TAKE THE NEXT STEP</span><button type="button" class="icon-button" id="close-apply" aria-label="Close application form">×</button></div>
+    <div class="apply-intro"><p class="eyebrow">APPLICATION</p><h2 id="apply-title">Make your move.</h2><p id="apply-role" class="muted"></p></div>
+    <form id="application-form" class="application-form" novalidate>
+      <input type="hidden" id="apply-internship-id" name="internshipId">
+      <div class="form-field"><label for="applicant-name">Full name <span aria-hidden="true">*</span></label><input id="applicant-name" name="name" autocomplete="name" required minlength="2" maxlength="80"><small class="field-error" id="name-error"></small></div>
+      <div class="form-field"><label for="applicant-email">Email address <span aria-hidden="true">*</span></label><input id="applicant-email" name="email" type="email" autocomplete="email" required maxlength="254"><small class="field-error" id="email-error"></small></div>
+      <div class="form-field"><label for="portfolio-url">Portfolio or LinkedIn URL <span class="optional">(optional)</span></label><input id="portfolio-url" name="portfolio" type="url" placeholder="https://example.com" autocomplete="url"><small class="field-error" id="portfolio-error"></small></div>
+      <p class="form-note">Demo only: your application is saved in this browser, not sent to a company.</p>
+      <button class="button button-dark submit-button" type="submit">Submit demo application <span aria-hidden="true">↗</span></button>
+      <p id="application-feedback" class="form-feedback" role="status" aria-live="polite"></p>
+    </form>
+  </dialog>
+  <script>
+const list = document.getElementById("internship-list");
+const searchInput = document.getElementById("search-input");
+const domainFilter = document.getElementById("domain-filter");
+const modeFilter = document.getElementById("mode-filter");
+const resultsCount = document.getElementById("results-count");
+const loadingState = document.getElementById("loading-state");
+const errorState = document.getElementById("error-state");
+const emptyState = document.getElementById("empty-state");
+const filterForm = document.getElementById("filter-form");
+const detailsDialog = document.getElementById("details-dialog");
+const applyDialog = document.getElementById("apply-dialog");
+const dialogContent = document.getElementById("dialog-content");
+const applicationForm = document.getElementById("application-form");
+
+let internships = [];
+let activeInternship = null;
+const markStyles = ["", "purple", "orange", "blue", "pink"];
+const icons = { "Full Stack Development": "F", "UI/UX": "U", "Data Analytics": "D", "Cyber Security": "S" };
+
+function setLoading(isLoading) {
+  loadingState.hidden = !isLoading;
+  list.setAttribute("aria-busy", String(isLoading));
+}
+
+function setError(message = "We couldn’t load the listings. Check your connection and try again.") {
+  setLoading(false);
+  list.replaceChildren();
+  emptyState.hidden = true;
+  errorState.hidden = false;
+  errorState.querySelector("p").textContent = message;
+  resultsCount.textContent = "Listings unavailable";
+}
+
+async function loadInternships() {
+  setLoading(true);
+  errorState.hidden = true;
+  emptyState.hidden = true;
+  resultsCount.textContent = "Loading opportunities…";
+  try {
+    // Embedded sample data means this single-file version also works from file://.
+    const records = [
+  {
+    "id": "INT-101",
+    "title": "Frontend Intern",
+    "domain": "Full Stack Development",
+    "mode": "Remote",
+    "location": "India",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "openings": 3
+  },
+  {
+    "id": "INT-102",
+    "title": "API Engineering Intern",
+    "domain": "Full Stack Development",
+    "mode": "Hybrid",
+    "location": "Pune",
+    "skills": [
+      "Node.js",
+      "SQL",
+      "Testing"
+    ],
+    "openings": 2
+  },
+  {
+    "id": "INT-103",
+    "title": "UI/UX Intern",
+    "domain": "UI/UX",
+    "mode": "Remote",
+    "location": "India",
+    "skills": [
+      "Figma",
+      "Research",
+      "Accessibility"
+    ],
+    "openings": 1
+  },
+  {
+    "id": "INT-104",
+    "title": "Data Analyst Intern",
+    "domain": "Data Analytics",
+    "mode": "On-site",
+    "location": "Bengaluru",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Data visualisation"
+    ],
+    "openings": 2
+  },
+  {
+    "id": "INT-105",
+    "title": "Security Operations Intern",
+    "domain": "Cyber Security",
+    "mode": "Remote",
+    "location": "India",
+    "skills": [
+      "Linux",
+      "Logs",
+      "Networking"
+    ],
+    "openings": 1
+  }
+];
+    if (!Array.isArray(records) || records.some((item) =>
+      !item.id || !item.title || !item.domain || !item.mode ||
+      !item.location || !Array.isArray(item.skills) || !Number.isInteger(item.openings)
+    )) {
+      throw new Error("The internship data is not in the expected format.");
+    }
+    internships = records;
+    document.getElementById("stat-roles").textContent = String(internships.length).padStart(2, "0");
+    setLoading(false);
+    renderInternships();
+  } catch (error) {
+    setError();
+  }
+}
+
+function getFilteredInternships() {
+  const query = searchInput.value.trim().toLocaleLowerCase();
+  const domain = domainFilter.value;
+  const mode = modeFilter.value;
+  return internships.filter((item) => {
+    const searchable = [item.id, item.title, item.domain, item.mode, item.location, ...item.skills].join(" ").toLocaleLowerCase();
+    return (!query || searchable.includes(query)) &&
+      (domain === "all" || item.domain === domain) &&
+      (mode === "all" || item.mode === mode);
+  });
+}
+
+function renderInternships() {
+  const filtered = getFilteredInternships();
+  list.replaceChildren();
+  errorState.hidden = true;
+  emptyState.hidden = filtered.length !== 0;
+  list.hidden = filtered.length === 0;
+  resultsCount.textContent = `${filtered.length} ${filtered.length === 1 ? "opportunity" : "opportunities"} found`;
+  filtered.forEach((item) => list.appendChild(createCard(item)));
+  list.setAttribute("aria-busy", "false");
+}
+
+function createCard(item) {
+  const card = document.createElement("article");
+  card.className = "internship-card";
+  const top = document.createElement("div");
+  top.className = "card-top";
+  const mark = document.createElement("div");
+  mark.className = `company-mark ${markStyles[internships.indexOf(item) % markStyles.length]}`;
+  mark.setAttribute("aria-hidden", "true");
+  mark.textContent = icons[item.domain] || item.title.charAt(0);
+  const id = document.createElement("span");
+  id.className = "role-id";
+  id.textContent = item.id;
+  top.append(mark, id);
+
+  const domain = document.createElement("span");
+  domain.className = "domain-pill";
+  domain.textContent = item.domain;
+  const title = document.createElement("h3");
+  title.textContent = item.title;
+  const meta = document.createElement("div");
+  meta.className = "meta-list";
+  meta.append(
+    makeMeta("⌖", item.location),
+    makeMeta("◷", item.mode),
+    makeMeta("▣", `${item.openings} ${item.openings === 1 ? "opening" : "openings"}`)
+  );
+  const skills = document.createElement("div");
+  skills.className = "skill-list";
+  item.skills.forEach((skill) => {
+    const tag = document.createElement("span");
+    tag.className = "skill-tag";
+    tag.textContent = skill;
+    skills.appendChild(tag);
+  });
+  const footer = document.createElement("div");
+  footer.className = "card-footer";
+  const opening = document.createElement("span");
+  opening.className = "opening-count";
+  opening.innerHTML = `<strong>${item.openings}</strong> available`;
+  const actions = document.createElement("div");
+  actions.className = "card-actions";
+  const details = document.createElement("button");
+  details.className = "button button-light button-small";
+  details.type = "button";
+  details.textContent = "Details";
+  details.setAttribute("aria-label", `View details for ${item.title}`);
+  details.addEventListener("click", () => openDetails(item));
+  const apply = document.createElement("button");
+  apply.className = "button button-dark button-small";
+  apply.type = "button";
+  apply.textContent = "Apply ↗";
+  apply.setAttribute("aria-label", `Apply for ${item.title}`);
+  apply.addEventListener("click", () => openApplication(item));
+  actions.append(details, apply);
+  footer.append(opening, actions);
+  card.append(top, domain, title, meta, skills, footer);
+  return card;
+}
+
+function makeMeta(symbol, text) {
+  const span = document.createElement("span");
+  const icon = document.createElement("span");
+  icon.className = "meta-icon";
+  icon.setAttribute("aria-hidden", "true");
+  icon.textContent = symbol;
+  span.append(icon, document.createTextNode(text));
+  return span;
+}
+
+function openDetails(item) {
+  activeInternship = item;
+  dialogContent.replaceChildren();
+  const id = document.createElement("span");
+  id.className = "dialog-role-id";
+  id.textContent = item.id;
+  const title = document.createElement("h2");
+  title.className = "dialog-title";
+  title.id = "dialog-title";
+  title.textContent = item.title;
+  const domain = document.createElement("span");
+  domain.className = "domain-pill";
+  domain.textContent = item.domain;
+  const description = document.createElement("p");
+  description.className = "dialog-description";
+  description.textContent = `Build practical experience in ${item.domain.toLowerCase()} while working with ${item.skills.join(", ")}. This sample listing is a starting point for learning and professional growth.`;
+  const facts = document.createElement("div");
+  facts.className = "detail-block";
+  facts.innerHTML = "<h3>Role overview</h3>";
+  const factGrid = document.createElement("div");
+  factGrid.className = "detail-facts";
+  [["Work mode", item.mode], ["Location", item.location], ["Openings", String(item.openings)]].forEach(([label, value]) => {
+    const box = document.createElement("div");
+    const small = document.createElement("small");
+    small.textContent = label;
+    const strong = document.createElement("strong");
+    strong.textContent = value;
+    box.append(small, strong);
+    factGrid.appendChild(box);
+  });
+  facts.appendChild(factGrid);
+  const skillBlock = document.createElement("div");
+  skillBlock.className = "detail-block";
+  const skillHeading = document.createElement("h3");
+  skillHeading.textContent = "Skills you’ll explore";
+  const skills = document.createElement("div");
+  skills.className = "skill-list";
+  item.skills.forEach((skill) => {
+    const tag = document.createElement("span");
+    tag.className = "skill-tag";
+    tag.textContent = skill;
+    skills.appendChild(tag);
+  });
+  skillBlock.append(skillHeading, skills);
+  const actions = document.createElement("div");
+  actions.className = "dialog-actions";
+  const close = document.createElement("button");
+  close.type = "button";
+  close.className = "button button-light";
+  close.textContent = "Close";
+  close.addEventListener("click", () => detailsDialog.close());
+  const apply = document.createElement("button");
+  apply.type = "button";
+  apply.className = "button button-dark";
+  apply.textContent = "Apply for this role ↗";
+  apply.addEventListener("click", () => {
+    detailsDialog.close();
+    openApplication(item);
+  });
+  actions.append(close, apply);
+  dialogContent.append(id, title, domain, description, facts, skillBlock, actions);
+  detailsDialog.showModal();
+}
+
+function openApplication(item) {
+  activeInternship = item;
+  applicationForm.reset();
+  clearFormErrors();
+  document.getElementById("apply-internship-id").value = item.id;
+  document.getElementById("apply-role").textContent = `${item.title} · ${item.id}`;
+  document.getElementById("application-feedback").textContent = "";
+  document.getElementById("application-feedback").className = "form-feedback";
+  applyDialog.showModal();
+  document.getElementById("applicant-name").focus();
+}
+
+function clearFormErrors() {
+  ["name", "email", "portfolio"].forEach((field) => {
+    document.getElementById(`${field}-error`).textContent = "";
+    const input = document.getElementById(field === "name" ? "applicant-name" : field === "email" ? "applicant-email" : "portfolio-url");
+    input.removeAttribute("aria-invalid");
+  });
+}
+
+function showFieldError(field, message) {
+  const inputId = field === "name" ? "applicant-name" : field === "email" ? "applicant-email" : "portfolio-url";
+  document.getElementById(`${field}-error`).textContent = message;
+  document.getElementById(inputId).setAttribute("aria-invalid", "true");
+}
+
+function isSafeHttpUrl(value) {
+  if (!value) return true;
+  try {
+    const parsed = new URL(value);
+    return ["https:", "http:"].includes(parsed.protocol) && Boolean(parsed.hostname) && !parsed.username && !parsed.password;
+  } catch {
+    return false;
+  }
+}
+
+applicationForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  clearFormErrors();
+  const name = document.getElementById("applicant-name").value.trim();
+  const email = document.getElementById("applicant-email").value.trim();
+  const portfolio = document.getElementById("portfolio-url").value.trim();
+  const internshipId = document.getElementById("apply-internship-id").value;
+  let valid = true;
+  if (name.length < 2) { showFieldError("name", "Please enter your full name (at least 2 characters)."); valid = false; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showFieldError("email", "Enter a valid email address, such as name@example.com."); valid = false; }
+  if (portfolio && !isSafeHttpUrl(portfolio)) { showFieldError("portfolio", "Use a valid http:// or https:// URL."); valid = false; }
+  if (!valid) {
+    const firstInvalid = applicationForm.querySelector('[aria-invalid="true"]');
+    if (firstInvalid) firstInvalid.focus();
+    return;
+  }
+  const storageKey = "internhub-demo-applications";
+  let applications = [];
+  try { applications = JSON.parse(localStorage.getItem(storageKey) || "[]"); } catch { applications = []; }
+  const duplicate = applications.some((app) => app.internshipId === internshipId && app.email.toLowerCase() === email.toLowerCase());
+  const feedback = document.getElementById("application-feedback");
+  if (duplicate) {
+    feedback.textContent = "A demo application with this email already exists for this role.";
+    feedback.className = "form-feedback error";
+    return;
+  }
+  applications.push({ internshipId, email: email.toLowerCase(), submittedAt: new Date().toISOString() });
+  try { localStorage.setItem(storageKey, JSON.stringify(applications)); } catch {}
+  applicationForm.querySelector(".submit-button").disabled = true;
+  applicationForm.querySelector(".submit-button").textContent = "Demo application saved ✓";
+  feedback.textContent = "Success! Your demo application was saved in this browser. It has not been sent to an employer.";
+  feedback.className = "form-feedback";
+});
+
+applicationForm.addEventListener("input", (event) => {
+  const field = event.target.id === "applicant-name" ? "name" : event.target.id === "applicant-email" ? "email" : event.target.id === "portfolio-url" ? "portfolio" : null;
+  if (field) {
+    document.getElementById(`${field}-error`).textContent = "";
+    event.target.removeAttribute("aria-invalid");
+  }
+});
+
+function resetFilters() {
+  searchInput.value = "";
+  domainFilter.value = "all";
+  modeFilter.value = "all";
+  renderInternships();
+  searchInput.focus();
+}
+
+searchInput.addEventListener("input", renderInternships);
+domainFilter.addEventListener("change", renderInternships);
+modeFilter.addEventListener("change", renderInternships);
+filterForm.addEventListener("submit", (event) => event.preventDefault());
+document.getElementById("reset-filters").addEventListener("click", resetFilters);
+document.getElementById("empty-reset").addEventListener("click", resetFilters);
+document.getElementById("retry-button").addEventListener("click", loadInternships);
+document.getElementById("close-details").addEventListener("click", () => detailsDialog.close());
+document.getElementById("close-apply").addEventListener("click", () => applyDialog.close());
+[detailsDialog, applyDialog].forEach((dialog) => {
+  dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+  dialog.addEventListener("close", () => {
+    if (dialog === applyDialog) {
+      const submit = applicationForm.querySelector(".submit-button");
+      submit.disabled = false;
+      submit.innerHTML = 'Submit demo application <span aria-hidden="true">↗</span>';
+    }
+  });
+});
+
+loadInternships();
+
+  </script>
+</body>
+</html>
